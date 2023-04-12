@@ -1,44 +1,37 @@
 #include <stdlib.h>
-#include "holberton.h"
+#include "main.h"
+
 
 /**
- * **alloc_grid - creates a two dimensional array of ints
- * @width: width of the matrix
- * @height: height of the matrix
- *
- * Return: pointer to the created matrix (Success)
- * or NULL (Error)
- */
-int **alloc_grid(int width, int height)
+* *array_range - creates an array of integers
+* @min: minimum range of values stored
+* @max: maximum range of values stored and number of elements
+*
+* Return: pointer to the new array
+*/
+int *array_range(int min, int max)
 {
-	int **array;
-	int i, j;
+   int *ptr;
+   int i, size;
 
-	if (height <= 0 || width <= 0)
-		return (NULL);
 
-	array = (int **) malloc(sizeof(int *) * height);
+   if (min > max)
+       return (NULL);
 
-	if (array == NULL)
-		return (NULL);
-	for (i = 0; i < height; i++)
-	{
-		array[i] = (int *) malloc(sizeof(int) * width);
-		if (array[i] == NULL)
-		{
-			free(array);
-			for (j = 0; j <= i; j++)
-				free(array[j]);
-			return (NULL);
-		}
-	}
 
-	for (i = 0; i < height; i++)
-	{
-		for (j = 0; j < width; j++)
-		{
-			array[i][j] = 0;
-		}
-	}
-	return (array);
+   size = max - min + 1;
+
+
+ptr = malloc(sizeof(int) * size);
+
+
+   if (ptr == NULL)
+       return (NULL);
+
+
+   for (i = 0; min <= max; i++)
+       ptr[i] = min++;
+
+
+   return (ptr);
 }
